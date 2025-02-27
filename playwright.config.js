@@ -41,6 +41,7 @@ export default defineConfig({
     video: "on",
     headless: true,
     baseURL: "https://opensource-demo.orangehrmlive.com",
+    viewport: { width: 1280, height: 720 },
 
   },
 
@@ -80,6 +81,14 @@ export default defineConfig({
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     },
+    {
+      name: 'Mobile Safari',
+      use: {
+        ...devices['iPhone 15'],
+        isMobile: true,
+      },
+    },
+
   ],
 
   /* Run your local dev server before starting the tests */
