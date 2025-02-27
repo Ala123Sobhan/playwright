@@ -27,3 +27,5 @@ npx playwright test --debug
 npx playwright test --ui
 
 npx playwright test --help
+
+npx playwright codegen url
