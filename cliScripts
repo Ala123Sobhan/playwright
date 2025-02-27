@@ -1,0 +1,29 @@
+npx playtwright test --project="Google chrome"
+
+npx playtwright test --project="Google chrome" --headed
+
+npx playwright test  --config uat.playwright.config.js tests/orangehrmLogin.spec.js
+
+npx playwright test
+
+npx playwright test tests/todo-page
+
+npx playwright test -g "verify user can add job title"
+
+npx playwright test --project=chromium
+
+npx platwright test --workers=1
+
+npx playwright test --reporter=dot
+
+npx playwright test --retries=3
+
+npx playwright test --timeout=60000
+
+npx playwright test --trace on
+
+npx playwright test --debug
+
+npx playwright test --ui
+
+npx playwright test --help

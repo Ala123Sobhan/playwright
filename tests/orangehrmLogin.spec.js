@@ -1,37 +1,9 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import loginData from '../testData/login.json';
 
 
-const testData = [
-
-    {
-     "username": "Admin", 
-     "password": "admin123", 
-     "status": "valid"
-    },
-
-    {
-        "username": "Admin", 
-        "password": "admin", 
-        "status": "invalid"
-    },
-
-    {
-        "username": "Admin1", 
-        "password": "admin123", 
-        "status": "invalid"
-    },
-  
-    {
-        "username": "Admin1", 
-        "password": "admin1", 
-        "status": "invalid"
-    }
-
-]
-
-
-testData.forEach((data, index) =>{
+loginData.forEach((data, index) =>{
 
     test(`Verify login feature for organgeHrm for ${index+1}`, async({page}) => {
 

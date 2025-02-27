@@ -1,0 +1,27 @@
+[
+
+    {
+     "username": "Admin", 
+     "password": "admin123", 
+     "status": "valid"
+    },
+
+    {
+        "username": "Admin", 
+        "password": "admin", 
+        "status": "invalid"
+    },
+
+    {
+        "username": "Admin1", 
+        "password": "admin123", 
+        "status": "invalid"
+    },
+  
+    {
+        "username": "Admin1", 
+        "password": "admin1", 
+        "status": "invalid"
+    }
+
+]

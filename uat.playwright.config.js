@@ -40,7 +40,7 @@ export default defineConfig({
     screenshot: "on",
     video: "on",
     headless: true,
-    baseURL: "https://opensource-demo.orangehrmlive.com",
+    baseURL: "https://uat.opensource-demo.orangehrmlive.com",
 
   },
 
