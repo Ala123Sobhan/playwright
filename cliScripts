@@ -29,3 +29,7 @@ npx playwright test --ui
 npx playwright test --help
 
 npx playwright codegen url
+
+npm install -D playwright/test@latest
+
+npx playwright -- version
