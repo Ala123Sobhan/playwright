@@ -54,7 +54,7 @@ test('UI Controls', async ({page}) =>{
 
 })
 
-test.only("child window", async({browser}) => {
+test("child window", async({browser}) => {
 
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -64,16 +64,14 @@ test.only("child window", async({browser}) => {
 
     // Wait for the new page event
     const newPagePromise = context.waitForEvent("page");
-   // Click the link
+    // Click the link
     await documentLink.click();
 
-// Get the new page reference
+    // Get the new page reference
     const newPage = await newPagePromise;
     await newPage.waitForLoadState();
 
-
-   
-// Now, newPage is a proper Page object, and you can use .locator()
+    // Now, newPage is a proper Page object, and you can use .locator()
     const text = await newPage.locator(".im-para.red").textContent();
     const domain = text.split("@")[1].split(" ")[0];
     console.log(text.split("@")[1].split(" ")[0]);
