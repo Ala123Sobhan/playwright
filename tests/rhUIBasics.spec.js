@@ -69,12 +69,22 @@ test.only("child window", async({browser}) => {
 
 // Get the new page reference
     const newPage = await newPagePromise;
+    await newPage.waitForLoadState();
 
 
-    await page.pause();
+   
 // Now, newPage is a proper Page object, and you can use .locator()
     const text = await newPage.locator(".im-para.red").textContent();
-    console.log(text.split("@")[1]);
+    const domain = text.split("@")[1].split(" ")[0];
+    console.log(text.split("@")[1].split(" ")[0]);
+
+    await page.bringToFront(); 
+    console.log(await page.locator("label[for='username']").isVisible());    
+    await page.locator("input[name='username']").fill(domain);
+
+
+
+
 
 
 
