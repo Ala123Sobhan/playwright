@@ -29,3 +29,55 @@ test('@Web Client App login', async ({ page }) => {
 
  
 })
+
+test('UI Controls', async ({page}) =>{
+
+    
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const documentLink = page.locator("[href*='documents-request']");
+    const dropdown = page.locator("select[class='form-control']");
+    await dropdown.selectOption("consult");
+
+    const radioBtn = page.locator(".radiotextsty").nth(1);
+    await radioBtn.click();
+    await expect(radioBtn).toBeChecked();
+
+    await page.locator("#okayBtn").click();
+    await page.pause();
+    
+    const checkBox = page.locator("#terms");
+    await checkBox.click();
+    await expect(checkBox).toBeChecked();
+    await checkBox.uncheck();
+    expect(await checkBox.isChecked()).toBeFalsy();
+    await expect(documentLink).toHaveAttribute("class", "blinkingText");
+
+})
+
+test.only("child window", async({browser}) => {
+
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const documentLink = page.locator("[href*='documents-request']");
+
+    // Wait for the new page event
+    const newPagePromise = context.waitForEvent("page");
+   // Click the link
+    await documentLink.click();
+
+// Get the new page reference
+    const newPage = await newPagePromise;
+
+
+    await page.pause();
+// Now, newPage is a proper Page object, and you can use .locator()
+    const text = await newPage.locator(".im-para.red").textContent();
+    console.log(text.split("@")[1]);
+
+
+
+
+
+})
