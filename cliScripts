@@ -22,7 +22,7 @@ npx playwright test --timeout=60000
 
 npx playwright test --trace on
 
-npx playwright test --debug
+npx playwright test --debug //-- to open playwright inspector
 
 npx playwright test --ui
 

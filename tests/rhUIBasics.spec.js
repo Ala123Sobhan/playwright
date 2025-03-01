@@ -89,3 +89,60 @@ test("child window", async({browser}) => {
 
 
 })
+
+test.only("e2e ecommerce flow", async({page}) =>{
+    const email = "ala123sobhan+pw1@gmail.com";
+    const pass = "Ala123sobhan";
+    const productName = "ZARA COAT 3";
+    const country = "India";
+
+    await page.goto("https://rahulshettyacademy.com/client");
+    await page.locator("#userEmail").fill(email);
+    await page.locator("#userPassword").fill(pass);
+    await page.locator("[value='Login']").click();
+    await expect(page.locator("//div[@aria-label='Login Successfully']")).toBeVisible();
+
+    const products = page.locator(".card-body");
+    await products.first().waitFor();
+    const count = await products.count();
+
+    for(let i=0;i<count;i++){
+        if(await products.nth(i).locator("b").textContent() === productName){
+            await products.nth(i).locator("text= Add To Cart").click()
+            break;
+        }
+    }
+    //await page.waitForLoadState('networkidle');
+    await page.locator("button[class='btn btn-custom'] label").waitFor({state: "visible"});
+    await page.locator("button[routerlink='/dashboard/cart']").click();
+    await page.locator("div[class='cartSection'] h3").waitFor({state: "visible"});
+
+    const total = await page.locator(".totalRow span:nth-child(2)").nth(1).textContent();
+    await page.locator(".totalRow button[type='button']").click();
+
+    expect(await page.locator("label[type='text']").textContent()).toEqual(email);
+
+    await page.locator("input[placeholder='Select Country']").pressSequentially("Ind");
+    await page.locator(".ta-results").waitFor({state: "visible"});
+
+    const dropdown = page.locator(".ta-results");
+    const btnCount = await dropdown.locator("button").count();
+
+    for(let i =0; i<btnCount; i++){
+        const text = await dropdown.locator("button").nth(i).textContent();
+        if(text.trim() === country){
+            console.log(text);
+            await dropdown.locator("button").nth(i).click();
+            break; 
+        }
+    }
+
+    await page.locator(".btnn.action__submit.ng-star-inserted").click();
+    await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
+    console.log(total+","+ await page.locator("td[class='line-item product-info-column'] div[class='title']").textContent());
+    let actualPrice = await page.locator("td[class='line-item product-info-column'] div[class='title']").textContent();
+    actualPrice = actualPrice?.replace(/\s+/g, '');
+    await expect(actualPrice).toEqual(total);
+
+
+})
