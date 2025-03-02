@@ -90,7 +90,7 @@ test("child window", async({browser}) => {
 
 })
 
-test.only("e2e ecommerce flow", async({page}) =>{
+test("e2e ecommerce flow", async({page}) =>{
     const email = "ala123sobhan+pw1@gmail.com";
     const pass = "Ala123sobhan";
     const productName = "ZARA COAT 3";
