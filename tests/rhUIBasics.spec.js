@@ -137,6 +137,10 @@ test.only("e2e ecommerce flow", async({page}) =>{
         }
     }
 
+    await page.locator(".input.ddl").nth(0).selectOption("06");
+    await page.locator(".input.ddl").nth(1).selectOption("30");
+
+
     await page.locator(".btnn.action__submit.ng-star-inserted").click();
     await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
     console.log(total+","+ await page.locator("td[class='line-item product-info-column'] div[class='title']").textContent());
