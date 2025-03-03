@@ -33,3 +33,20 @@ npx playwright codegen url
 npm install -D playwright/test@latest
 
 npx playwright -- version
+
+npx playwright test --project=chromium
+
+npx playwright test --grep @Web
+
+npx playwright test --reporter=line,allure-playwright  //need 3rd party plugin allure playwright install - npm i allure-playwright
+allure generate ./allure-results --clean
+allure open ./allure-report
+
+
+
+
+
+//test files trigger parallel
+//individual test in a file run in sequence , for parallel - in test file before test -> test.describe.configure({mode: 'parallel'}); // serial mode skips test if other test fails
+//playwright by default provide 5 workers for test execution process
+//tagging tests- @Web , @Api , @Smoke  add them to test title -- to run them with tags - npx playwright test --grep @Web
