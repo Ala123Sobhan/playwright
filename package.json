@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test" : "npx playwright test tests/WebAPi.spec.js --headed"
+    "test": "npx playwright test tests/WebAPi.spec.js --headed"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +12,8 @@
   "devDependencies": {
     "@playwright/test": "^1.50.1",
     "@types/node": "^22.13.4"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.10.1"
   }
 }
